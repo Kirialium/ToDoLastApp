@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ToDoApplic</string>
-    <string name="create_new_string">Create a new note</string>
+    <string name="home_string">Home</string>
+    <string name="plus_string">+</string>
+    <string name="first_note_string">Here will be your first note</string>
+
 </resources>

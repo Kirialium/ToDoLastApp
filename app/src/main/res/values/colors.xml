@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Default color-->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -9,4 +10,14 @@
     <color name="light_black">#1C1C1C</color>
     <color name="gray">#3C3C3C</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_white">#CCCCCC</color>
+
+    <!-- Color pallet-->
+    <color name="first_blue">#7CBEDD</color>
+    <color name="first_blue_1.5">#59B7E3</color>
+    <color name="second_blue">#3CA0D0</color>
+    <color name="third_blue">#086FA1</color>
+    <color name="fourth_blue">#235D79</color>
+    <color name="fifth_blue">#034769</color>
+    <color name="sixth_blue">#00334C</color>
 </resources>
