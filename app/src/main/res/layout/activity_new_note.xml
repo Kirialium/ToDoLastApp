@@ -5,5 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewNoteActivity">
+    <FrameLayout
+        android:id="@+id/view_toolbar_new_note"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/third_blue"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <ImageButton
+            android:layout_marginStart="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_arrow_back"
+            android:backgroundTint="@color/white"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_note_string"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="center_vertical"
+            android:textSize="24sp"
+            android:layout_marginStart="55dp"/>
+    </FrameLayout>
 
+    <ImageButton
+        android:id="@+id/new_note_btn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/ic_check_circle"
+        android:backgroundTint="@color/third_blue"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>
