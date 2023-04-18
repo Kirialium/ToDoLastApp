@@ -11,6 +11,7 @@
     <color name="gray">#3C3C3C</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_white">#CCCCCC</color>
+    <color name="white2">#DDDDDD</color>
 
     <!-- Color pallet-->
     <color name="first_blue">#7CBEDD</color>

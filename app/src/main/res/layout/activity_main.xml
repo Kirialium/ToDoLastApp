@@ -79,4 +79,11 @@
         app:layout_constraintRight_toRightOf="@id/new_note_btn"
         app:layout_constraintTop_toTopOf="@id/new_note_btn"
         app:layout_constraintBottom_toBottomOf="@id/new_note_btn"/>
+    <ListView
+        android:id="@+id/list_view_notes"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_toolbar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
