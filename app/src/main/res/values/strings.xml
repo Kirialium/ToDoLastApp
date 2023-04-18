@@ -3,6 +3,8 @@
     <string name="home_string">Home</string>
     <string name="new_note_string">New Note</string>
     <string name="plus_string">+</string>
+    <string name="name_string">Name</string>
+    <string name="description_string">Description</string>
     <string name="first_note_string">Here will be your first note</string>
 
 </resources>

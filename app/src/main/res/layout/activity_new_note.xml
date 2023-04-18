@@ -33,15 +33,50 @@
             android:textSize="24sp"
             android:layout_marginStart="55dp"/>
     </FrameLayout>
-
-    <ImageButton
-        android:id="@+id/new_note_btn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/ic_check_circle"
-        android:backgroundTint="@color/third_blue"
+    <FrameLayout
+        android:id="@+id/bottom_frame"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:background="#DDDDDD"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageButton
+            android:id="@+id/accept_new_note"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/ic_check_circle"
+            android:backgroundTint="@color/third_blue"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </FrameLayout>
+    <EditText
+        android:id="@+id/name_new_note_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/name_string"
+        android:paddingStart="16dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/roboto"
+        android:maxLines="1"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/view_toolbar_new_note"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        tools:ignore="RtlSymmetry" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="515dp"
+        android:background="@null"
+        android:hint="@string/description_string"
+        android:gravity="top|start"
+        android:paddingStart="16dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/name_new_note_edit_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_frame"
+        tools:ignore="RtlSymmetry" />
 </androidx.constraintlayout.widget.ConstraintLayout>
