@@ -13,6 +13,11 @@
     <color name="dark_white">#CCCCCC</color>
     <color name="white2">#DDDDDD</color>
 
+    <!--Цвета для заметок-->
+    <color name="red">#FF5D15</color>
+    <color name="yellow">#FFBB10</color>
+    <color name="green">#68C729</color>
+
     <!-- Color pallet-->
     <color name="first_blue">#7CBEDD</color>
     <color name="first_blue_1.5">#59B7E3</color>

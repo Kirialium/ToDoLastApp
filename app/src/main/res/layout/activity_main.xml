@@ -27,6 +27,7 @@
             android:textSize="24sp"
             android:layout_marginStart="15dp"/>
         <ImageButton
+            android:elevation="10dp"
             android:id="@+id/settings_btn"
             android:layout_width="28dp"
             android:layout_height="28dp"

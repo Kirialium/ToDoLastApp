@@ -10,18 +10,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton newNoteBtn;
     private static final String TAG = "MainActivity";
-    private ImageView imageBulb;
-    private TextView textWilBe;
-    private ArrayList<Note> listNotes = new ArrayList<Note>();
+    private ArrayList<Note> listNotes = new ArrayList<>();
 
 
     @Override
@@ -37,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
         window.setStatusBarColor(this.getResources().getColor(R.color.third_blue));
         getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
 
+
         //Инициализация некоторых переменных
-        imageBulb = findViewById(R.id.image_bulb);
-        textWilBe = findViewById(R.id.text_wil_be);
+        ImageView imageBulb = findViewById(R.id.image_bulb);
+        TextView textWilBe = findViewById(R.id.text_wil_be);
 
         //Создание объекта заметки, с переданными данными из второго активити
         Bundle passedData = getIntent().getExtras();
-        if(passedData != null && passedData.getBoolean("IS_FIRST_NOTE")){
+        if(passedData != null){
             Note newNote = new Note();
             newNote.setName(passedData.getString("NAME_NOTE"));
             newNote.setDescription(passedData.getString("DESCRIPTION_NOTE"));
@@ -52,11 +52,14 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, newNote.getDescription());
             imageBulb.setBackground(null);
             textWilBe.setText("");
-
+            //ArrayAdapter для ListView
+            MyAdapter adapter = new MyAdapter(this, android.R.layout.simple_list_item_2, listNotes);
+            ListView listView = findViewById(R.id.list_view_notes);
+            listView.setAdapter(adapter);
         }
 
         //Кнопка перехода на создание новой заметки
-        newNoteBtn = findViewById(R.id.new_note_btn);
+        ImageButton newNoteBtn = findViewById(R.id.new_note_btn);
         newNoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

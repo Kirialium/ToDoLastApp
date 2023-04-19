@@ -44,12 +44,6 @@ public class NewNoteActivity extends AppCompatActivity {
                 Intent intent = new Intent(NewNoteActivity.this, MainActivity.class);
                 intent.putExtra("NAME_NOTE", editTextName.getText().toString());
                 intent.putExtra("DESCRIPTION_NOTE", editTextDescription.getText().toString());
-                if(editTextName.getText().toString().equals("") &&
-                        editTextDescription.getText().toString().equals("")){
-                    intent.putExtra("IS_FIRST_NOTE", false);
-                }else {
-                    intent.putExtra("IS_FIRST_NOTE", true);
-                }
                 NewNoteActivity.this.startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
