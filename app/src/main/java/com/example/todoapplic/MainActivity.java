@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             MyAdapter adapter = new MyAdapter(this, android.R.layout.simple_list_item_2, listNotes);
             ListView listView = findViewById(R.id.list_view_notes);
             listView.setAdapter(adapter);
+            listView.setItem
         }
 
         //Кнопка перехода на создание новой заметки
