@@ -1,7 +1,6 @@
 package com.example.todoapplic;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,15 +12,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.todoapplic.db.DbManager;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private ArrayList<Note> listNotes = new ArrayList<>();
-
+    private DbManager mDbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +40,30 @@ public class MainActivity extends AppCompatActivity {
         //Инициализация некоторых переменных
         ImageView imageBulb = findViewById(R.id.image_bulb);
         TextView textWilBe = findViewById(R.id.text_wil_be);
+        mDbManager = new DbManager(this);
 
         //Создание объекта заметки, с переданными данными из второго активити
         Bundle passedData = getIntent().getExtras();
         if(passedData != null){
+            //Сохранине пришедших данных в DB
+            String name = passedData.getString("NAME_NOTE");
+            String description = passedData.getString("DESCRIPTION_NOTE");
+            Log.d(TAG, "Началась запись в DB");
+            mDbManager.insertToDb(name, description);
+            Log.d(TAG, "Данные записались в DB");
             Note newNote = new Note();
             newNote.setName(passedData.getString("NAME_NOTE"));
             newNote.setDescription(passedData.getString("DESCRIPTION_NOTE"));
             listNotes.add(newNote);
-            Log.d(TAG, newNote.getName());
-            Log.d(TAG, newNote.getDescription());
+            /*for(String title : mDbManager.getFromDb()){
+                Log.d(TAG, title);
+            }*/
             imageBulb.setBackground(null);
             textWilBe.setText("");
             //ArrayAdapter для ListView
             MyAdapter adapter = new MyAdapter(this, android.R.layout.simple_list_item_2, listNotes);
             ListView listView = findViewById(R.id.list_view_notes);
             listView.setAdapter(adapter);
-            listView.setItem
         }
 
         //Кнопка перехода на создание новой заметки
@@ -69,5 +76,22 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Открытие базы данных
+        mDbManager.openDb();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //Закрытие базы данных
+        mDbManager.closeDb();
     }
 }
