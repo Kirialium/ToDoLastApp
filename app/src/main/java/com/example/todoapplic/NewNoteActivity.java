@@ -15,7 +15,6 @@ import java.util.Objects;
 
 public class NewNoteActivity extends AppCompatActivity {
 
-    private ImageButton backToHomeBtn;
     private EditText editTextName, editTextDescription;
 
     @Override
@@ -36,7 +35,7 @@ public class NewNoteActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.description_edit_text);
 
         //Кнопка возвращения домой, сохранения данных и их передача
-        backToHomeBtn = findViewById(R.id.back_to_home_btn);
+        ImageButton backToHomeBtn = findViewById(R.id.back_to_home_btn);
         backToHomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
