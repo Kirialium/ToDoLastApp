@@ -11,14 +11,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private ArrayList<Note> listNotes = new ArrayList<>();
+    private ArrayList<User> listNotes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +37,32 @@ public class MainActivity extends AppCompatActivity {
         //Инициализация некоторых переменных
         ImageView imageBulb = findViewById(R.id.image_bulb);
         TextView textWilBe = findViewById(R.id.text_wil_be);
+        TheDatabase db = TheDatabase.getInstance(this);
+        UserDao dao = db.getUserDao();
 
         //Создание объекта заметки, с переданными данными из второго активити
         Bundle passedData = getIntent().getExtras();
         if(passedData != null){
+
             //Сохранине пришедших данных в DB
-            String name = passedData.getString("NAME_NOTE");
-            String description = passedData.getString("DESCRIPTION_NOTE");
-            Note newNote = new Note();
-            newNote.setName(passedData.getString("NAME_NOTE"));
-            newNote.setDescription(passedData.getString("DESCRIPTION_NOTE"));
-            listNotes.add(newNote);
-            /*for(String title : mDbManager.getFromDb()){
-                Log.d(TAG, title);
-            }*/
-            imageBulb.setBackground(null);
-            textWilBe.setText("");
+            User newNote = new User();
+            newNote.setFirstName(passedData.getString("NAME_NOTE"));
+            newNote.setLastName(passedData.getString("DESCRIPTION_NOTE"));
+            dao.insertAll(newNote);
+            listNotes =(ArrayList<User>) dao.getAll();
+
+
+            //Убрать лампочку и текст с заднего плана
+            hideFirstScreen(imageBulb, textWilBe);
+
             //ArrayAdapter для ListView
-            MyAdapter adapter = new MyAdapter(this, android.R.layout.simple_list_item_2, listNotes);
-            ListView listView = findViewById(R.id.list_view_notes);
-            listView.setAdapter(adapter);
+            setAdapter();
+
+            //Если первое окрытие то просто поставить лист вью
+        }else {
+            hideFirstScreen(imageBulb, textWilBe);
+            listNotes =(ArrayList<User>) dao.getAll();
+            setAdapter();
         }
 
         //Кнопка перехода на создание новой заметки
@@ -69,5 +75,18 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+    }
+
+    private void hideFirstScreen(ImageView imageBulb, TextView textWilBe){
+        imageBulb.setBackground(null);
+        textWilBe.setText("");
+    }
+
+    private void setAdapter(){
+        if(listNotes != null){
+            MyAdapter adapter = new MyAdapter(this, android.R.layout.simple_list_item_2, listNotes);
+            ListView listView = findViewById(R.id.list_view_notes);
+            listView.setAdapter(adapter);
+        }
     }
 }

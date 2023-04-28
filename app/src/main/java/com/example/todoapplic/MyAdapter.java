@@ -15,12 +15,12 @@ import androidx.core.content.res.ResourcesCompat;
 import java.util.ArrayList;
 
 
-public class MyAdapter extends ArrayAdapter<Note> {
+public class MyAdapter extends ArrayAdapter<User> {
 
     private Context mContext;
     private int mResource;
 
-    public MyAdapter(Context context, int resource, ArrayList<Note> objects) {
+    public MyAdapter(Context context, int resource, ArrayList<User> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.mResource = resource;
@@ -35,8 +35,9 @@ public class MyAdapter extends ArrayAdapter<Note> {
 
         TextView txtTitle = convertView.findViewById(android.R.id.text1);
 
-        Note note = getItem(position);
-        txtTitle.setText(note.getName());
+
+        User user = getItem(position);
+        txtTitle.setText(user.getFirstName());
 
         //Шрифт
         Typeface customFont = ResourcesCompat.getFont(mContext, R.font.roboto);
